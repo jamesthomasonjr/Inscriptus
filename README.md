@@ -2,7 +2,10 @@
 
 ## Overview
 
-**inscriptus** ~~is~~ **will** be a simple _blog_ + _cms_ written with 100% javascript.
+**Inscriptus** is a simple _blog_ + _cms_
+
+This is only the Backend/API repository.  
+Frontend code for Inscriptus will come later, and may come in multiple languages.  
 
 ## Todo
 
