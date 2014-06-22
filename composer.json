@@ -1,0 +1,31 @@
+{
+  "name": "inscriptus",
+  "description": "A simple CMS and blog",
+  "version": "0.0.1-dev",
+  "type": "project",
+  "keywords": [
+    "Content Management System",
+    "CMS",
+    "Blog"
+  ],
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "James Thomason, Jr",
+      "email": "james@jamesthomasonjr.com",
+      "homepage": "http://jamesthomasonjr.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "silex/silex": "~1.1",
+    "igorw/config-service-provider": "v1.2.1"
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "psr-4": {
+      "Inscriptus\\API\\": "src/"
+    }
+  }
+}
