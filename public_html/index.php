@@ -7,10 +7,10 @@ $app = new Silex\Application();
 $app->register(new Inscriptus\API\Core\Providers\DependencyProvider());
 
 //$app->register(new Inscriptus\API\Pages\Providers\DependencyProvider());
-//$app->mount('/', new Inscriptus\API\Pages\Providers\ControllerProvider());
+//$app->mount('/pages', new Inscriptus\API\Pages\Providers\ControllerProvider());
 
 //$app->register(new Inscriptus\API\Posts\Providers\DependencyProvider());
-//$app->mount('/' . $app['posts_directory'], new Inscriptus\API\Posts\Providers\ControllerProvider());
+//$app->mount('/posts', new Inscriptus\API\Posts\Providers\ControllerProvider());
 
 //$app->register(new Inscriptus\API\Users\Providers\DependencyProvider());
 //$app->register('/users', new Inscriptus\API\Users\Providers\ControllerProvider());
