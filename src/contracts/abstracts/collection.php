@@ -19,10 +19,12 @@ class Collection implements \ArrayAccess, \IteratorAggregate, \Countable
 
     public function offsetSet($offset, $value)
     {
-        if (is_null($offset)) {
-            $this->data[] = $value;
-        } else {
-            $this->data[$offset] = $value;
+        if ($this->validate($value)) {
+            if (is_null($offset)) {
+                $this->data[] = $value;
+            } else {
+                $this->data[$offset] = $value;
+            }
         }
     }
 
