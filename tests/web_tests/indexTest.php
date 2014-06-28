@@ -9,10 +9,10 @@ class IndexPageTest extends WebTestCase
         return require __DIR__ . '/../../app.php';
     }
 
-    function testSirenResponse()
+    function testJsonResponse()
     {
         $client = $this->createClient();
-        $client->request('GET', '/', [], [], ['ACCEPT' => 'application/vnd.siren+json']);
+        $client->request('GET', '/', [], [], ['ACCEPT' => 'application/json']);
         $response = $client->getResponse();
         $headers = $response->headers;
         $content = json_decode($response->getContent());
@@ -21,22 +21,35 @@ class IndexPageTest extends WebTestCase
         $this->assertTrue($headers->contains('Content-Type', 'application/json'));
 
         $this->assertEquals('Inscriptus Index', $content->title);
-        $this->assertEquals('self', $content->links[0]->rel[0]);
-        $this->assertEquals('http://localhost/', $content->links[0]->href);
+        $this->assertEquals('http://localhost/', $content->href);
+        $this->assertEquals(3, count($content->rels));
+        $this->assertNull($content->rels['index']);
+        $this->assertEquals('http://localhost/posts/', $content->rels['posts']);
+        $this->assertEquals('http://localhost/pages/', $content->rels['pages']);
+        $this->assertEquals('http://localhost/users/', $content->rels['users']);
+        $this->assertNull($content->items);
+        $this->assertNull($content->actions);
     }
 
-    function testHalResponse()
+    function testXmlResponse()
     {
         $client = $this->createClient();
-        $client->request('GET', '/', [], [], ['ACCEPT' => 'application/vnd.hal+json']);
+        $client->request('GET', '/', [], [], ['ACCEPT' => 'application/xml']);
         $response = $client->getResponse();
         $headers = $response->headers;
-        $content = json_decode($response->getContent());
+        $content = simplexml_load_string($response->getContent());
 
         $this->assertTrue($response->isOk());
-        $this->assertTrue($headers->contains('Content-Type', 'application/json'));
+        $this->assertTrue($headers->contains('Content-Type', 'application/xml'));
 
-        $this->assertNotNull('self', $content->_links['self']);
-        $this->assertEquals('http://localhost/', $content->_links['self']->href);
+        $this->assertEquals('Inscriptus Index', $content->title);
+        $this->assertEquals('http://localhost/', $content->href);
+        $this->assertNotNull($content->rels);
+        $this->assertNull($content->rels->index);
+        $this->assertEquals('http://localhost/posts/', $content->rels->posts);
+        $this->assertEquals('http://localhost/pages/', $content->rels->pages);
+        $this->assertEquals('http://localhost/users/', $content->rels->users);
+        $this->assertNull($content->items);
+        $this->assertNull($content->actions);
     }
 }
