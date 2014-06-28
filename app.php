@@ -23,6 +23,14 @@ $app->register(
 //$app->register(new Inscriptus\API\Users\Providers\DependencyProvider());
 //$app->register('/users', new Inscriptus\API\Users\Providers\ControllerProvider());
 
-$app->get('/', function () { return "Hello, world!"; });
+$app->get('/',
+    function () {
+        $body = '{ "message": "Hello, world!" }';
+        $status = 200;
+        $headers = ['content-type' => 'application/json'];
+
+        return new Symfony\Component\HttpFoundation\Response($body, $status, $headers);
+    }
+);
 
 return $app;
