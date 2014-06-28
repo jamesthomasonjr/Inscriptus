@@ -12,7 +12,12 @@ $app->register(
     )
 );
 
+$app->register(new Silex\Provider\ServiceControllerServiceProvider());
+
 //$app->register(new Inscriptus\API\Core\Providers\DependencyProvider());
+
+$app->register(new Inscriptus\API\Index\Providers\DependencyProvider());
+$app->mount('/', new Inscriptus\API\Index\Providers\ControllerProvider());
 
 //$app->register(new Inscriptus\API\Pages\Providers\DependencyProvider());
 //$app->mount('/pages', new Inscriptus\API\Pages\Providers\ControllerProvider());
@@ -22,15 +27,5 @@ $app->register(
 
 //$app->register(new Inscriptus\API\Users\Providers\DependencyProvider());
 //$app->register('/users', new Inscriptus\API\Users\Providers\ControllerProvider());
-
-$app->get('/',
-    function () {
-        $body = '{ "message": "Hello, world!" }';
-        $status = 200;
-        $headers = ['content-type' => 'application/json'];
-
-        return new Symfony\Component\HttpFoundation\Response($body, $status, $headers);
-    }
-);
 
 return $app;
