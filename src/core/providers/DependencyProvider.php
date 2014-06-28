@@ -8,7 +8,6 @@ class DependencyProvider implements ServiceProviderInterface
 {
     public function register(Application $app)
     {
-        $app['env'] = $_ENV['env'] ?: 'dev';
     }
 
     public function boot(Application $app)

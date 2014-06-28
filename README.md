@@ -10,9 +10,12 @@ Frontend code for Inscriptus will come later, and may come in multiple languages
 ## Todo
 
 * ~~Switch to PHP~~
+* Display index
 * Get pages by slug
 * Get posts by slug
 * Get users by name
+* Get pages by user
+* Get posts by user
 * Create HMAC Authenticator
 * Create new page
 * Create new post
