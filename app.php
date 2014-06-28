@@ -24,3 +24,5 @@ $app->register(
 //$app->register('/users', new Inscriptus\API\Users\Providers\ControllerProvider());
 
 $app->get('/', function () { return "Hello, world!"; });
+
+return $app;
