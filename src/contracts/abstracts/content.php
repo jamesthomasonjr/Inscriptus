@@ -14,26 +14,6 @@ class Content
     private $body;
     private $tags;
 
-    public function __get($name)
-    {
-        try {
-            $method = "get" . ucfirst($name);
-            return $this->$method();
-        } catch (\Exception $e) {
-            throw $e;
-        }
-    }
-
-    public function __set($name, $value)
-    {
-        try {
-            $method = "set" . ucfirst($name);
-            return $this->$method($value);
-        } catch (\Exception $e) {
-            throw $e;
-        }
-    }
-
     public function getId()
     {
         return $this->id;
