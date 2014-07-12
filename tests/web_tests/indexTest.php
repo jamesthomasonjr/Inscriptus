@@ -22,13 +22,15 @@ class IndexPageTest extends WebTestCase
 
         $this->assertEquals('Inscriptus Index', $content->title);
         $this->assertEquals('http://localhost/', $content->href);
-        $this->assertEquals(3, count($content->rels));
+        $this->assertEquals(4, count($content->rels));
         $this->assertNull($content->rels['index']);
         $this->assertEquals('http://localhost/posts/', $content->rels['posts']);
         $this->assertEquals('http://localhost/pages/', $content->rels['pages']);
+        $this->assertEquals('http://localhost/tags/', $content->rels['tags']);
         $this->assertEquals('http://localhost/users/', $content->rels['users']);
         $this->assertNull($content->items);
         $this->assertNull($content->actions);
+        $this->assertNull($content->properties);
     }
 
     function testXmlResponse()
@@ -48,8 +50,10 @@ class IndexPageTest extends WebTestCase
         $this->assertNull($content->rels->index);
         $this->assertEquals('http://localhost/posts/', $content->rels->posts);
         $this->assertEquals('http://localhost/pages/', $content->rels->pages);
+        $this->assertEquals('http://localhost/tags/', $content->rels->tags);
         $this->assertEquals('http://localhost/users/', $content->rels->users);
         $this->assertNull($content->items);
         $this->assertNull($content->actions);
+        $this->assertNull($content->properties);
     }
 }
