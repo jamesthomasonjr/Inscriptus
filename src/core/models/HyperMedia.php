@@ -133,9 +133,11 @@ class HyperMedia
             $matches = array_intersect($contentType, $accepted);
 
             if (empty($contentType)) {
+                //@TODO Refactor this line out into strategies
                 $this->contentType = "application/json";
                 $this->asJson();
             } else {
+                //@TODO Refactor this line out into strategies
                 $this->contentType = $matches[0];
                 $this->$conversion[$matches[0]];
             }
