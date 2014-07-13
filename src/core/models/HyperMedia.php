@@ -8,11 +8,11 @@ use HyperMedia\RelationshipCollection;
 
 class HyperMedia
 {
-    private title;
-    private href;
-    private items;
-    private rels;
-    private actions;
+    private $title;
+    private $href;
+    private $items;
+    private $rels;
+    private $actions;
     
     public function __construct()
     {
