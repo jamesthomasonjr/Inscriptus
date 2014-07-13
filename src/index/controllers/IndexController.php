@@ -3,7 +3,7 @@
 namespace Inscriptus\API\Index\Controllers;
  
 use \Symfony\Component\HttpFoundation\Response;
-use \Inscriptus\API\Index\Services\HyperMediaFactory;
+use \Inscriptus\API\Core\Services\HyperMediaFactory;
 
 class IndexController
 {
