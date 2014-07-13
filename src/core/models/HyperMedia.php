@@ -13,6 +13,7 @@ class HyperMedia
     private $items;
     private $rels;
     private $actions;
+    private $contentType;
     
     public function __construct()
     {
@@ -37,6 +38,7 @@ class HyperMedia
     public function setHref($href)
     {
         $this->href = (string) $href;
+        return $this;
     }
 
     public function getHref()
@@ -76,4 +78,71 @@ class HyperMedia
     {
         return $this->rels;
     }
+
+    public function asJson()
+    {
+        //@TODO LOGIC
+        $this->strategy = "json";
+        return $this;
+    }
+
+    public function asXml()
+    {
+        //@TODO LOGIC
+        $this->strategy = "xml";
+        return $this;
+    }
+
+    public function asHtml()
+    {
+        //@TODO LOGIC
+        $this->strategy = "html";
+        return $this;
+    }
+
+    public function body()
+    {
+        //@TODO Refactor this out into strategies
+        return '{ "message": "Hello, world!" }';
+    }
+
+    public function contentType()
+    {
+        //@TODO Refactor this out into strategies
+        return $this->contentType;
+    }
+
+    public function asContentType($contentType)
+    {
+        //@TODO Refactor method to use better logic
+
+        $contentType = split(",", $contentType);
+
+        $accepted = array(
+                "application/json",
+                "applicaiton/xml",
+                "text/html"
+            );
+        $conversion = array(
+                "application/json" => "asJson",
+                "applicaiton/xml" => "asXml",
+                "text/html" => "asHtml"
+            );
+
+        try {
+            $matches = array_intersect($contentType, $accepted);
+
+            if (empty($contentType)) {
+                $this->contentType = "application/json";
+                $this->asJson();
+            } else {
+                $this->contentType = $matches[0];
+                $this->$conversion[$matches[0]];
+            }
+
+            return $this;
+        } catch (\Exception $e) {
+        }
+    }
+
 }

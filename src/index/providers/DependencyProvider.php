@@ -5,13 +5,17 @@ use \Silex\Application;
 use \Silex\ServiceProviderInterface;
 
 use Inscriptus\API\Index\Controllers\IndexController;
+use Inscriptus\API\Index\Services\HyperMediaFactory;
 
 class DependencyProvider implements ServiceProviderInterface
 {
     public function register(Application $app)
     {
-        $app['index.controller'] = $app->share(function() {
-            return new IndexController();
+        $app['index.controller'] = $app->share(function($app) {
+            $hyperMediaFactory = new HyperMediaFactory();
+            $accepted = $app['request']->headers->get('Accept');
+
+            return new IndexController($hyperMediaFactory, $accepted);
         });
     }
 
