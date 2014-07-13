@@ -12,7 +12,8 @@ class DependencyProvider implements ServiceProviderInterface
     public function register(Application $app)
     {
         $app['index.controller'] = $app->share(function($app) {
-            $hyperMediaFactory = new HyperMediaFactory();
+            $url = $app['request']->getUri();
+            $hyperMediaFactory = new HyperMediaFactory($url);
             $accepted = $app['request']->headers->get('Accept');
 
             return new IndexController($hyperMediaFactory, $accepted);

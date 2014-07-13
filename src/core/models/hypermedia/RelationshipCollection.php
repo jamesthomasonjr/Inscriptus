@@ -2,10 +2,10 @@
 
 namespace Inscriptus\API\Core\Models\HyperMedia;
 
-class RelationshipCollection extends Inscriptus\API\Contracts\Abstracts\Collection; 
+class RelationshipCollection extends \Inscriptus\API\Contracts\Abstracts\Collection 
 {
     public function __construct()
     {
-        parent::__construct("Relationship");
+        parent::__construct("\Inscriptus\API\Core\Models\HyperMedia\Relationship");
     }
 }

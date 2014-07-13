@@ -4,7 +4,9 @@ namespace Inscriptus\API\Core\Services;
 
 class HyperMediaFactory
 {
-    public function __construct()
+    protected $url;
+    public function __construct($url)
     {
+        $this->url = $url;
     }
 }

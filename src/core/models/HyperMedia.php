@@ -2,9 +2,9 @@
 
 namespace Inscriptus\API\Core\Models;
 
-use HyperMedia\ActionCollection;
-use HyperMedia\ItemCollection;
-use HyperMedia\RelationshipCollection;
+use \Inscriptus\API\Core\Models\HyperMedia\ActionCollection;
+use \Inscriptus\API\Core\Models\HyperMedia\ItemCollection;
+use \Inscriptus\API\Core\Models\HyperMedia\RelationshipCollection;
 
 class HyperMedia
 {
@@ -71,7 +71,7 @@ class HyperMedia
     public function setRels(RelationshipCollection $rels)
     {
         $this->rels = $rels;
-        return $rels;
+        return $this;
     }
 
     public function getRels()
@@ -103,7 +103,16 @@ class HyperMedia
     public function body()
     {
         //@TODO Refactor this out into strategies
-        return '{ "message": "Hello, world!" }';
+        $output = array();
+        $output['title'] = $this->getTitle();
+        $output['href'] = $this->getHref();
+        $output['rels'] = array();
+
+        foreach($this->getRels() as $rel) {
+            $output['rels'][$rel->getTitle()] = $rel->getHref();
+        }
+
+        return json_encode($output);
     }
 
     public function contentType()
@@ -132,7 +141,7 @@ class HyperMedia
         try {
             $matches = array_intersect($contentType, $accepted);
 
-            if (empty($contentType)) {
+            if (empty($contentType) || $contentType[0] === "*/*") {
                 //@TODO Refactor this line out into strategies
                 $this->contentType = "application/json";
                 $this->asJson();

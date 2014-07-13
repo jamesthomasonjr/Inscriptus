@@ -40,7 +40,7 @@ class Collection implements \ArrayAccess, \IteratorAggregate, \Countable
 
     public function offsetGet($offset)
     {
-        return isset($this->data[$offset] ?: null);
+        return isset($this->data[$offset]);
     }
 
     public function getIterator()
