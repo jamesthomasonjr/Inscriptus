@@ -6,6 +6,7 @@ use \Silex\ServiceProviderInterface;
 
 use Inscriptus\API\Index\Controllers\IndexController;
 use Inscriptus\API\Index\Services\HyperMediaFactory;
+use Inscriptus\API\Core\Models\HyperMediaSerializer;
 
 class DependencyProvider implements ServiceProviderInterface
 {
@@ -14,9 +15,10 @@ class DependencyProvider implements ServiceProviderInterface
         $app['index.controller'] = $app->share(function($app) {
             $url = $app['request']->getUri();
             $hyperMediaFactory = new HyperMediaFactory($url);
-            $accepted = $app['request']->headers->get('Accept');
+            $hyperMediaSerializer = new HyperMediaSerializer($app['contentType']);
+            $accepted = $app['contentType'];
 
-            return new IndexController($hyperMediaFactory, $accepted);
+            return new IndexController($hyperMediaFactory, $hyperMediaSerializer, $accepted);
         });
     }
 

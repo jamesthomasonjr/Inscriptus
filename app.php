@@ -3,6 +3,7 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 $app = new Silex\Application();
+$app['request'] = Symfony\Component\HttpFoundation\Request::createFromGlobals();
 
 $app['env'] = $_ENV['env'] ?: 'dev';
 
@@ -14,7 +15,7 @@ $app->register(
 
 $app->register(new Silex\Provider\ServiceControllerServiceProvider());
 
-//$app->register(new Inscriptus\API\Core\Providers\DependencyProvider());
+$app->register(new Inscriptus\API\Core\Providers\DependencyProvider());
 
 $app->register(new Inscriptus\API\Index\Providers\DependencyProvider());
 $app->mount('/', new Inscriptus\API\Index\Providers\ControllerProvider());

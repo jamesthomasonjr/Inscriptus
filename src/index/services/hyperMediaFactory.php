@@ -11,7 +11,7 @@ class HyperMediaFactory extends \Inscriptus\API\Core\Services\HyperMediaFactory
     public function index()
     { 
         $hypermedia = new HyperMedia();
-        $hypermedia->setTitle("Index");
+        $hypermedia->setTitle("Inscriptus Index");
         $hypermedia->setHref($this->url);
 
         $rels = new RelationshipCollection();

@@ -1,3 +1,15 @@
 {
-    "debug": false
+    "debug": false,
+    "sql": {
+        "host": "host",
+        "port": 1234,
+        "database": "database",
+        "username": "username",
+        "password": "password"
+    },
+    "accepts": [
+        "application/json",
+        "application/xml",
+        "text/html"
+    ]
 }

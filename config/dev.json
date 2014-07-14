@@ -6,5 +6,10 @@
         "database": "inscriptus",
         "username": "root",
         "password": "admin"
-    }
+    },
+    "accepts": [
+        "application/json",
+        "application/xml",
+        "text/html"
+    ]
 }
