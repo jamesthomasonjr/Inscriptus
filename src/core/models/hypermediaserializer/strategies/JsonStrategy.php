@@ -13,9 +13,9 @@ class JsonStrategy
         $output['rels'] = array();
 
         foreach($hypermedia->getRels() as $rel) {
-            $output['rels'][] = array(
-                "title" => $rel->getTitle(),
-                "href" => $rel->getHref()
+            $output['rels'][$rel->getTitle()] = array(
+                "href" => $rel->getHref(),
+                "title" => $rel->getTitle()
             );
         }
 

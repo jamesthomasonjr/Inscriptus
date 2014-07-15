@@ -11,9 +11,9 @@ class DependencyProvider implements ServiceProviderInterface
         $accepted = split(',', $app['request']->headers->get('Accept'));
         $matches = array_intersect($app['accepts'], $accepted);
 
-        $contentType = (empty($contentType) || $contentType[0] === "*/*")
+        $contentType = (empty($matches) || $accepted[0] === "*/*")
             ? "application/json"
-            : $matches[0];
+            : array_pop($matches) ;
 
         $app['contentType'] = $contentType;
     }
