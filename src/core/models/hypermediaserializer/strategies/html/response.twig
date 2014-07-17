@@ -6,9 +6,24 @@
     <body>
         <h1><a href = "{{ href }}">{{ title }}</a></h1>
         {% if rels|length > 0 %}
+        <h2>Relations</h2>
             <ul id="rels">
             {% for rel in rels %}
                 <li><a href="{{ rel.href }}">{{ rel.title }}</a></li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        {% if items|length > 0 %}
+        <h2>Items</h2>
+            <ul id="items">
+            {% for item in items %}
+            {% endfor %}
+            </ul>
+        {% endif %}
+        {% if actions|length > 0 %}
+        <h2>Actions</h2>
+            <ul id="actions">
+            {% for action in actionss %}
             {% endfor %}
             </ul>
         {% endif %}

@@ -10,12 +10,20 @@ class HtmlStrategy
         $output['title'] = $hypermedia->getTitle();
         $output['href'] = $hypermedia->getHref();
         $output['rels'] = array();
+        $output['items'] = array();
+        $output['actions'] = array();
 
         foreach($hypermedia->getRels() as $rel) {
             $output['rels'][$rel->getTitle()] = array(
                 "href" => $rel->getHref(),
                 "title" => $rel->getTitle()
             );
+        }
+        
+        foreach($hypermedia->getItems() as $item) {
+        }
+
+        foreach($hypermedia->getActions() as $action) {
         }
 
         // @TODO Might be worth refactoring Twig stuff out into
