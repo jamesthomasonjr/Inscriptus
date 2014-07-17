@@ -19,7 +19,8 @@
   ],
   "require": {
     "silex/silex": "~1.1",
-    "igorw/config-service-provider": "v1.2.1"
+    "igorw/config-service-provider": "v1.2.1",
+    "twig/twig": "1.*"
   },
   "require-dev": {
     "symfony/browser-kit": ">=2.3,<2.4-dev" 

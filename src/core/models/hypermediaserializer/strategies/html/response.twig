@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ title }}</title>
+    </head>
+    <body>
+        <h1><a href = "{{ href }}">{{ title }}</a></h1>
+        {% if rels|length > 0 %}
+            <ul id="rels">
+            {% for rel in rels %}
+                <li><a href="{{ rel.href }}">{{ rel.title }}</a></li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    </body>
+</html>

@@ -2,11 +2,27 @@
 
 namespace Inscriptus\API\Core\Models\HyperMediaSerializer\Strategies;
 
-
 class HtmlStrategy
 {
     public function serialize($hypermedia)
-    {
-        return "<html><head></head><body></body><h1>HTML Output not yet implemented!</h1></html>";
+    {   
+        $output = array();
+        $output['title'] = $hypermedia->getTitle();
+        $output['href'] = $hypermedia->getHref();
+        $output['rels'] = array();
+
+        foreach($hypermedia->getRels() as $rel) {
+            $output['rels'][$rel->getTitle()] = array(
+                "href" => $rel->getHref(),
+                "title" => $rel->getTitle()
+            );
+        }
+
+        // @TODO Might be worth refactoring Twig stuff out into
+        // a dependency provider... But its probably harmless.
+        $loader = new \Twig_Loader_Filesystem(__DIR__ . '/html');
+        $twig = new \Twig_Environment($loader);
+
+        return $twig->render('response.twig', $output);
     }
 }
