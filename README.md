@@ -10,7 +10,7 @@ Frontend code for Inscriptus will come later, and may come in multiple languages
 ## Todo
 
 * ~~Switch to PHP~~
-* Display index
+* ~~Display index~~
 * Get pages by slug
 * Get posts by slug
 * Get users by name
