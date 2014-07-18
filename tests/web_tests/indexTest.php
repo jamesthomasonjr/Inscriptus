@@ -56,4 +56,20 @@ class IndexPageTest extends WebTestCase
         $this->assertEmpty($content->actions);
         $this->assertEmpty($content->properties);
     }
+
+    function testHtmlResponse()
+    {
+        $client = $this->createClient();
+        $client->request('GET', '/', [], [], ['HTTP_ACCEPT' => 'text/html']);
+        $response = $client->getResponse();
+        $headers = $response->headers;
+        $content = new \DOMDocument();
+        $content->loadHTML($response->getcontent());
+
+        $this->assertTrue($response->isOk());
+        $this->assertTrue($headers->contains('Content-Type', 'text/html; charset=UTF-8'));
+
+        $this->assertEquals('Inscriptus Index', $content->getElementById("id")->nodeValue);
+        $this->assertEquals('http://localhost/', $content->getElementById("id")->getAttribute('href'));
+    }
 }
