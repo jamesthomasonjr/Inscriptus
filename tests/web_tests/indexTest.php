@@ -12,7 +12,7 @@ class IndexPageTest extends WebTestCase
     function testJsonResponse()
     {
         $client = $this->createClient();
-        $client->request('GET', '/', [], [], ['ACCEPT' => 'application/json']);
+        $client->request('GET', '/', [], [], ['HTTP_ACCEPT' => 'application/json']);
         $response = $client->getResponse();
         $headers = $response->headers;
         $content = json_decode($response->getContent());
@@ -22,12 +22,12 @@ class IndexPageTest extends WebTestCase
 
         $this->assertEquals('Inscriptus Index', $content->title);
         $this->assertEquals('http://localhost/', $content->href);
-        $this->assertEquals(4, count($content->rels));
-        $this->assertNull($content->rels['index']);
-        $this->assertEquals('http://localhost/posts/', $content->rels['posts']);
-        $this->assertEquals('http://localhost/pages/', $content->rels['pages']);
-        $this->assertEquals('http://localhost/tags/', $content->rels['tags']);
-        $this->assertEquals('http://localhost/users/', $content->rels['users']);
+        $this->assertEquals(4, count((array)$content->rels));
+        $this->assertNull($content->rels->index);
+        $this->assertEquals('http://localhost/posts/', $content->rels->posts->href);
+        $this->assertEquals('http://localhost/pages/', $content->rels->pages->href);
+        $this->assertEquals('http://localhost/tags/', $content->rels->tags->href);
+        $this->assertEquals('http://localhost/users/', $content->rels->users->href);
         $this->assertNull($content->items);
         $this->assertNull($content->actions);
         $this->assertNull($content->properties);
@@ -36,7 +36,7 @@ class IndexPageTest extends WebTestCase
     function testXmlResponse()
     {
         $client = $this->createClient();
-        $client->request('GET', '/', [], [], ['ACCEPT' => 'application/xml']);
+        $client->request('GET', '/', [], [], ['HTTP_ACCEPT' => 'application/xml']);
         $response = $client->getResponse();
         $headers = $response->headers;
         $content = simplexml_load_string($response->getContent());
@@ -46,14 +46,14 @@ class IndexPageTest extends WebTestCase
 
         $this->assertEquals('Inscriptus Index', $content->title);
         $this->assertEquals('http://localhost/', $content->href);
-        $this->assertNotNull($content->rels);
-        $this->assertNull($content->rels->index);
-        $this->assertEquals('http://localhost/posts/', $content->rels->posts);
-        $this->assertEquals('http://localhost/pages/', $content->rels->pages);
-        $this->assertEquals('http://localhost/tags/', $content->rels->tags);
-        $this->assertEquals('http://localhost/users/', $content->rels->users);
-        $this->assertNull($content->items);
-        $this->assertNull($content->actions);
-        $this->assertNull($content->properties);
+        $this->assertNotEmpty($content->rels);
+        $this->assertEmpty($content->rels->index);
+        $this->assertEquals('http://localhost/posts/', $content->rels->posts->href);
+        $this->assertEquals('http://localhost/pages/', $content->rels->pages->href);
+        $this->assertEquals('http://localhost/tags/', $content->rels->tags->href);
+        $this->assertEquals('http://localhost/users/', $content->rels->users->href);
+        $this->assertEmpty($content->items);
+        $this->assertEmpty($content->actions);
+        $this->assertEmpty($content->properties);
     }
 }
