@@ -3,7 +3,6 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 $app = new Silex\Application();
-$app['request'] = Symfony\Component\HttpFoundation\Request::createFromGlobals();
 
 $app['env'] = $_ENV['env'] ?: 'dev';
 
