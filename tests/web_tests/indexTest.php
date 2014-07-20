@@ -60,16 +60,23 @@ class IndexPageTest extends WebTestCase
     function testHtmlResponse()
     {
         $client = $this->createClient();
-        $client->request('GET', '/', [], [], ['HTTP_ACCEPT' => 'text/html']);
+        $crawler = $client->request('GET', '/', [], [], ['HTTP_ACCEPT' => 'text/html']);
         $response = $client->getResponse();
         $headers = $response->headers;
-        $content = new \DOMDocument();
-        $content->loadHTML($response->getcontent());
 
         $this->assertTrue($response->isOk());
         $this->assertTrue($headers->contains('Content-Type', 'text/html; charset=UTF-8'));
 
-        $this->assertEquals('Inscriptus Index', $content->getElementById("id")->nodeValue);
-        $this->assertEquals('http://localhost/', $content->getElementById("id")->getAttribute('href'));
+        $this->assertEquals('Inscriptus Index', $crawler->filter('#title[rel=canonical]')->text());
+        $this->assertEquals('http://localhost/', $crawler->filter('#title[rel=canonical]')->attr('href'));
+        $this->assertEquals(4, $crawler->filter('#rels')->children()->count());
+        $this->assertEquals(0, $crawler->filter('#rels a[rel=root]')->count());
+        $this->assertEquals('http://localhost/posts/', $crawler->filter('#rels a[rel=posts]')->attr('href'));
+        $this->assertEquals('http://localhost/pages/', $crawler->filter('#rels a[rel=pages]')->attr('href'));
+        $this->assertEquals('http://localhost/tags/', $crawler->filter('#rels a[rel=tags]')->attr('href'));
+        $this->assertEquals('http://localhost/users/', $crawler->filter('#rels a[rel=users]')->attr('href'));
+        $this->assertEquals(0, $crawler->filter('#items')->count());
+        $this->assertEquals(0, $crawler->filter('#actions')->count());
+        $this->assertEquals(0, $crawler->filter('#propertiess')->count());
     }
 }
