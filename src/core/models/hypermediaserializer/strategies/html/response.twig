@@ -4,12 +4,12 @@
         <title>{{ title }}</title>
     </head>
     <body>
-        <h1><a href = "{{ href }}">{{ title }}</a></h1>
+        <h1><a id="title" rel="canonical" href="{{ href }}">{{ title }}</a></h1>
         {% if rels|length > 0 %}
         <h2>Relations</h2>
             <ul id="rels">
             {% for rel in rels %}
-                <li><a href="{{ rel.href }}">{{ rel.title }}</a></li>
+                <li><a rel="{{ rel.title }}" href="{{ rel.href }}">{{ rel.title }}</a></li>
             {% endfor %}
             </ul>
         {% endif %}
