@@ -20,4 +20,12 @@
         <server name="APP_DIR" value="./public_html/" />
         <env name="env" value="test" />
     </php>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./src</directory>
+        </whitelist>
+        <blacklist>
+            <directory>./vendor</directory>
+        </blacklist>
+    </filter>
 </phpunit>
