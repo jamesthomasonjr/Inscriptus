@@ -13,16 +13,16 @@ class XmlStrategy
 
         if(count($hypermedia->getRels())) {
             $relsNode = $output->addChild('rels');
-        }
+ 
+            foreach($hypermedia->getRels() as $rel) {
+                $title = $rel->getTitle();
 
-        foreach($hypermedia->getRels() as $rel) {
-            $title = $rel->getTitle();
+                $relNode = $relsNode->addChild($title);
 
-            $relNode = $relsNode->addChild($title);
-
-            $relNode->addChild('href', $rel->getHref());
-            $relNode->addChild('title', $rel->getTitle());
-        }
+                $relNode->addChild('href', $rel->getHref());
+                $relNode->addChild('title', $rel->getTitle());
+            }
+       }
 
         return $output->asXML();
     }
