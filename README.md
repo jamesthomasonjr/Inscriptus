@@ -1,6 +1,6 @@
 #Inscriptus API
-![Quality Score](https://scrutinizer-ci.com/g/Inscriptus/Inscriptus/badges/quality-score.png?b=master)  
-![Build Status](https://scrutinizer-ci.com/g/Inscriptus/Inscriptus/badges/build.png?b=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Inscriptus/Inscriptus/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Inscriptus/Inscriptus/?branch=master)  
+[![Build Status](https://scrutinizer-ci.com/g/Inscriptus/Inscriptus/badges/build.png?b=master)](https://scrutinizer-ci.com/g/Inscriptus/Inscriptus/build-status/master)
 
 ## Overview
 
