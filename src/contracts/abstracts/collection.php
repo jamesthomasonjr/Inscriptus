@@ -7,6 +7,9 @@ class Collection implements \ArrayAccess, \IteratorAggregate, \Countable
     private $class;
     private $data;
 
+    /**
+     * @param string $class
+     */
     public function __construct($class)
     {
         if (!is_string($class)) {

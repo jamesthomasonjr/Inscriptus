@@ -24,6 +24,9 @@ class HyperMedia
         $this->actions = null;
     }
 
+    /**
+     * @param string $title
+     */
     public function setTitle($title)
     {
         $this->title = (string) $title;

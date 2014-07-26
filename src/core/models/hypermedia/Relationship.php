@@ -7,6 +7,10 @@ class Relationship
     private $title;
     private $href;
 
+    /**
+     * @param string $title
+     * @param string $href
+     */
     public function __construct($title, $href)
     {
         $this->title = $title;
