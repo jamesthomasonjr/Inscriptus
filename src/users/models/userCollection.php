@@ -2,7 +2,7 @@
 
 namespace Inscriptus\API\Users\Models;
 
-class UserCollection extends Inscriptus\API\Contracts\Abstracts\Collection; 
+class UserCollection extends Inscriptus\API\Contracts\Abstracts\Collection 
 {
     public function __construct()
     {

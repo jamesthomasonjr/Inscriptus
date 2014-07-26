@@ -2,7 +2,7 @@
 
 namespace Inscriptus\API\Posts\Models;
 
-class PostCollection extends Inscriptus\API\Contracts\Abstracts\Collection; 
+class PostCollection extends Inscriptus\API\Contracts\Abstracts\Collection 
 {
     public function __construct()
     {

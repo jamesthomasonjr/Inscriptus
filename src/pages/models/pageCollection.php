@@ -2,7 +2,7 @@
 
 namespace Inscriptus\API\Pages\Models;
 
-class PageCollection extends Inscriptus\API\Contracts\Abstracts\Collection; 
+class PageCollection extends Inscriptus\API\Contracts\Abstracts\Collection 
 {
     public function __construct()
     {
